@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Special for Dapaa ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+  /* --- CSS TERPADU & RAPI --- */
+  * { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
+  
+  body {
+    margin: 0;
+    min-height: 100dvh; 
+    font-family: 'Quicksand', sans-serif;
+    background: #000;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    touch-action: manipulation; 
+  }
+
+  /* Overlay Pembuka */
+  .overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #020205;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-out;
+    padding: 20px;
+    text-align: center;
+  }
+  .overlay.hidden { opacity: 0; pointer-events: none; }
+  
+  .start-btn {
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    background: linear-gradient(45deg, #6a5acd, #8a2be2);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(138,43,226,0.6);
+    animation: pulse 2s infinite;
+    margin-top: 15px;
+  }
+
+  /* Animasi Latar Belakang */
+  .space-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    z-index: 0;
+  }
+
+  .moon {
+    position: absolute;
+    top: 10%; right: 15%;
+    width: 80px; height: 80px;
+    background: #fdfcdc;
+    border-radius: 50%;
+    box-shadow: 0 0 40px #fdfcdc, 0 0 80px rgba(255,255,255,0.3);
+    animation: moonFloat 10s ease-in-out infinite alternate;
+    z-index: 1;
+  }
+
+  .star { position: absolute; background: white; border-radius: 50%; animation: twinkle linear infinite; }
+
+  /* Kartu Utama */
+  .card {
+    position: relative;
+    z-index: 10;
+    width: 88%; 
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    transform: translateY(30px);
+    opacity: 0;
+    transition: transform 1s, opacity 1s;
+  }
+  .card.show { transform: translateY(0); opacity: 1; }
+
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    margin: 0;
+    background: linear-gradient(to right, #ffecd2, #fcb69f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .time { font-size: 0.8rem; color: #aaa; margin: 10px 0 20px 0; }
+  p { font-size: 0.95rem; line-height: 1.6; color: #e0e0e0; }
+
+  /* Tombol & Pesan Rahasia */
+  .reveal-btn {
+    background: #fff;
+    color: #333;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  .secret-box {
+    margin-top: 15px;
+    background: rgba(0,0,0,0.25);
+    border-radius: 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s ease, padding 0.8s ease;
+  }
+  .secret-box.open { max-height: 800px; padding: 20px 15px; }
+
+  .message-text { font-style: italic; font-size: 0.95rem; margin-bottom: 20px; text-align: left; color: #fff; line-height: 1.6; }
+
+  textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 12px;
+    color: white;
+    font-family: inherit;
+    resize: none;
+    margin-bottom: 12px;
+    font-size: 16px; 
+  }
+
+  .send-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    background: linear-gradient(to right, #25D366, #128C7E);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  @keyframes moonFloat { from {transform: translateY(0);} to {transform: translateY(-15px);} }
+  @keyframes twinkle { 0%, 100% {opacity: 0.3;} 50% {opacity: 1;} }
+  @keyframes pulse { 0% {transform: scale(1);} 50% {transform: scale(1.05);} 100% {transform: scale(1);} }
+</style>
+</head>
+<body>
+
+<audio id="bgMusic" loop preload="auto">
+  <source src="lullaby-164373.mp3" type="audio/mpeg">
+  <source src="file:///D:/PEMOGRAMAN/lullaby-164373.mp3" type="audio/mpeg">
+  <source src="https://cdn.pixabay.com/audio/2023/10/24/audio_9593f06d86.mp3" type="audio/mpeg">
+</audio>
+
+<div class="overlay" id="startOverlay">
+  <div style="font-size:3.5rem; margin-bottom:15px; animation: moonFloat 3s infinite alternate;">🌙</div>
+  <h2 style="font-weight:400;">Hai, Dapaa</h2>
+  <p>Ada pesan kecil buat kamu.<br>Nyalakan volume ya.</p>
+  <button class="start-btn" onclick="startExperience()">Buka Pesan ✨</button>
+</div>
+
+<div class="space-bg" id="starContainer">
+  <div class="moon"></div>
+</div>
+
+<div class="card" id="mainCard">
+  <h1>Selamat Malam, Dapaa</h1>
+  <div class="time" id="timeDisplay"></div>
+  <p>Terima kasih sudah bertahan sejauh ini.<br>Istirahat yang cukup ya.</p>
+
+  <button class="reveal-btn" id="btnReveal" onclick="showSecret()">💌 Baca Pesan Rahasia</button>
+
+  <div class="secret-box" id="secretBox">
+    <div class="message-text" id="typeWriterText"></div>
+    <div style="width: 100%; height: 1px; background: rgba(255,255,255,0.2); margin: 20px 0;"></div>
+    <p style="font-size:0.85rem; margin-bottom:8px; text-align:left;">Balas ke Amaa:</p>
+    <textarea id="waMessage" rows="3" placeholder="Tulis balasanmu di sini..."></textarea>
+    <button class="send-btn" onclick="sendWA()">Kirim Pesan 🚀</button>
+  </div>
+</div>
+
+<script>
+const phoneNumber = "6281217391752"; 
+const secretText = "Kamu adalah semesta favorit Amaa. Jangan lupa istirahat yang cukup ya. Tidur nyenyak, mimpiin kita! Love you ❤️";
+
+function startExperience() {
+  // Sembunyikan Overlay
+  document.getElementById('startOverlay').classList.add('hidden');
+  
+  // Ambil Element Audio
+  const audio = document.getElementById('bgMusic');
+  audio.volume = 0.5;
+
+  // PAKSA PUTAR: Ini kunci agar audio jalan di semua HP/Browser
+  const playPromise = audio.play();
+  
+  if (playPromise !== undefined) {
+    playPromise.then(_ => {
+      console.log("Musik diputar!");
+    }).catch(error => {
+      console.log("Autoplay diblokir, menunggu interaksi tambahan.");
+      // Jika masih gagal, putar saat user klik area manapun di layar
+      document.body.addEventListener('click', () => { audio.play(); }, {once: true});
+    });
+  }
+
+  // Tampilkan Kartu
+  document.getElementById('mainCard').classList.add('show');
+}
+
+// Efek Bintang
+const starContainer = document.getElementById('starContainer');
+for (let i = 0; i < 60; i++) {
+  const star = document.createElement('div');
+  star.className = 'star';
+  star.style.left = Math.random() * 100 + '%';
+  star.style.top = Math.random() * 100 + '%';
+  star.style.width = star.style.height = Math.random() * 2 + 'px';
+  star.style.animationDuration = (2 + Math.random() * 3) + 's';
+  starContainer.appendChild(star);
+}
+
+// Update Jam
+function updateTime() {
+  const now = new Date();
+  const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+  document.getElementById('timeDisplay').innerText = now.toLocaleDateString('id-ID', options) + ' • ' + now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'});
+}
+setInterval(updateTime, 1000); updateTime();
+
+// Tampilkan Pesan Rahasia
+function showSecret() {
+  document.getElementById('btnReveal').style.display = 'none';
+  const box = document.getElementById('secretBox');
+  box.classList.add('open');
+  let i = 0;
+  function type() {
+    if (i < secretText.length) {
+      document.getElementById('typeWriterText').innerHTML += secretText.charAt(i);
+      i++; setTimeout(type, 50);
+    }
+  }
+  setTimeout(type, 500);
+}
+
+// Kirim WA
+function sendWA() {
+  const msg = document.getElementById('waMessage').value;
+  if(!msg) return alert("Tulis sesuatu dulu ya..");
+  window.location.href = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(msg)}`;
+}
+</script>
+</body>
+</html>
